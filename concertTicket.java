@@ -13,4 +13,9 @@ public class concertTicket extends Ticket {
                   char stadiumSector, float maxWeight, BigDecimal price){
         super (concertHall, eventCode, eventTime, isPromo, stadiumSector, maxWeight, price);
     }
+
+    @Override
+    public void printTicket() {
+        System.out.println("This is an additional message about concert ticket type.");
+    }
 }

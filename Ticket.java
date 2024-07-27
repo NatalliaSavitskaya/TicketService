@@ -1,4 +1,3 @@
-import java.util.Random;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -15,8 +14,6 @@ public abstract class Ticket {
     public BigDecimal price;
     public final LocalDateTime creationTime = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
 
-    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    private static final Random RANDOM = new Random();
     private static int currentID = 1000;
 
     public static int getNextID() {
@@ -75,15 +72,15 @@ public abstract class Ticket {
         }
     }
 
-    public String toString() {
-        return "Ticket ID is:'" + id +
-                ", ticket creation time is: " + creationTime +
-                ", concert hall is: " + concertHall +
-                ", event code is: " + eventCode +
-                ", event time is: " + eventTime +
-                ", ticket is promo: " + isPromo +
-                ", stadium sector is: " + stadiumSector +
-                ", max allowed backpack weight (kg.g): " + String.format("%.2f", maxWeight) +
-                ", price=" + price;
+    public void printTicket() {
+        System.out.println("Ticket ID: " + getID());
+        System.out.println("Ticket creation time is: " + creationTime);
+        System.out.println("Concert hall is: " + concertHall);
+        System.out.println("Event code is: " + eventCode);
+        System.out.println("Event time is: " + eventTime);
+        System.out.println("Ticket is promo:" + isPromo);
+        System.out.println("Stadium sector is: " + stadiumSector);
+        System.out.println("Max allowed backpack weight: " + String.format("%.2f", maxWeight) + " kg.g");
+        System.out.println("Price=" + price + " EUR");
     }
 }
