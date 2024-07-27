@@ -4,26 +4,45 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.math.BigDecimal;
 
-public class Ticket {
-    private String id;
-    private String concertHall;
-    private String eventCode;
-    private Timestamp eventTime;
-    private boolean isPromo;
-    private char stadiumSector;
-    private float maxWeight;
-    private BigDecimal price;
-    private final LocalDateTime creationTime = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+public abstract class Ticket {
+    public int id;
+    public String concertHall;
+    public String eventCode;
+    public Timestamp eventTime;
+    public boolean isPromo;
+    public char stadiumSector;
+    public float maxWeight;
+    public BigDecimal price;
+    public final LocalDateTime creationTime = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
 
     private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     private static final Random RANDOM = new Random();
+    private static int currentID = 1000;
 
-    public Ticket() {
-        this.id = generateID();
+    public static int getNextID() {
+        if (currentID==9999) {
+            System.out.println("The maximum value of id was reached. The id generation started again from 1000.");
+            currentID = 1000;
+        }
+        return currentID++;
     }
 
-    public Ticket(String concertHall, String eventCode, Timestamp eventTime){
-        this.id = generateID();
+    public int getID() {
+        return id;
+    }
+
+    public void setID(int id) {
+        if ((id<1000)||(id>9999))
+            throw new IllegalArgumentException("The id should consist of 4 digits.");
+        else this.id = id;
+    }
+
+    public Ticket() {
+        this.id = getNextID();
+    }
+
+    public Ticket(String concertHall, String eventCode, Timestamp eventTime) {
+        this.id = getNextID();
         this.concertHall = concertHall;
         this.eventCode = eventCode;
         this.eventTime = eventTime;
@@ -31,7 +50,7 @@ public class Ticket {
 
     public Ticket(String concertHall, String eventCode, Timestamp eventTime, boolean isPromo,
                   char stadiumSector, float maxWeight, BigDecimal price){
-        this.id = generateID();
+        this.id = getNextID();
         this.concertHall = concertHall;
         this.eventCode = eventCode;
         this.eventTime = eventTime;
@@ -54,14 +73,6 @@ public class Ticket {
         if (maxWeight<0) {
             throw new IllegalArgumentException("Max weight can't be negative.");
         }
-    }
-
-    private String generateID(){
-        StringBuilder id = new StringBuilder(4);
-        for (int i = 0; i < 4; i++) {
-            id.append(CHARACTERS.charAt(RANDOM.nextInt(CHARACTERS.length())));
-        }
-        return id.toString();
     }
 
     public String toString() {
