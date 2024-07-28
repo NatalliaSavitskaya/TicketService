@@ -30,11 +30,11 @@ class TicketService {
         System.out.println("The info about the empty movie ticket is:");
         emptyTicket2.printTicket();
 
-        movieTicket limitedTicket2 = new movieTicket("Kinocinema", "354", Timestamp.valueOf("2024-07-28 13:18:06.5338071"));
+        movieTicket limitedTicket2 = new movieTicket("Cinepolis", "354", Timestamp.valueOf("2024-07-28 13:18:06.5338071"));
         System.out.println("The info about the limited movie ticket is:");
         limitedTicket2.printTicket();
 
-        movieTicket fullTicket2 = new movieTicket("Kinocinema", "354", Timestamp.valueOf("2024-07-28 13:18:06.5338071"), true, 'B', 1.5F, BigDecimal.valueOf(19.99));
+        movieTicket fullTicket2 = new movieTicket("Cinepolis", "354", Timestamp.valueOf("2024-07-28 13:18:06.5338071"), true, 'B', 1.5F, BigDecimal.valueOf(19.99));
         fullTicket.ticketValidation();
         System.out.println("The info about the full movie ticket is:");
         fullTicket2.printTicket();
@@ -99,6 +99,5 @@ class TicketService {
         concertTicket2.setEventTime(Timestamp.valueOf("2025-07-28 13:18:06.5338071"));
         concertTicket2.printTicket();
         System.out.println("concertTicket1 equals concertTicket2: " + concertTicket1.equals(concertTicket2)); // false
-
     }
 }
