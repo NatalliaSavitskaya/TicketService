@@ -16,6 +16,7 @@ public abstract class Ticket {
 
     private static int currentID = 1000;
 
+    // getValues methods
     public static int getNextID() {
         if (currentID==9999) {
             System.out.println("The maximum value of id was reached. The id generation started again from 1000.");
@@ -28,12 +29,54 @@ public abstract class Ticket {
         return id;
     }
 
+    public String getConcertHall() {
+        return concertHall;
+    }
+
+    public String getEventCode() {
+        return eventCode;
+    }
+
+    public boolean getIsPromo() {
+        return isPromo;
+    }
+
+    public char getStadiumSector() {
+        return stadiumSector;
+    }
+
+    public float getMaWeight() {
+        return maxWeight;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public Timestamp getEventTime() {
+        return eventTime;
+    }
+
+    public LocalDateTime getCreationTime() {
+        return creationTime;
+    }
+
+    // setValue methods
     public void setID(int id) {
         if ((id<1000)||(id>9999))
             throw new IllegalArgumentException("The id should consist of 4 digits.");
         else this.id = id;
     }
 
+    public void setStadiumSector (char stadiumSector) {
+        this.stadiumSector = stadiumSector;
+    }
+
+    public void setEventTime (Timestamp eventTime) {
+        this.eventTime = eventTime;
+    }
+
+    // constructors
     public Ticket() {
         this.id = getNextID();
     }
@@ -57,6 +100,7 @@ public abstract class Ticket {
         this.price = price;
     }
 
+    // validation of ticket parameters
     public void ticketValidation() {
         if (concertHall.length() > 10) {
             throw new IllegalArgumentException("Concerthall cannot be longer than 10 characters.");
@@ -72,12 +116,14 @@ public abstract class Ticket {
         }
     }
 
+    // printing information about ticket method
     public void printTicket() {
         System.out.println("This is general info about the ticket.");
         System.out.println("Ticket ID: " + getID());
-        System.out.println("Ticket creation time is: " + creationTime);
+        System.out.println("Ticket creation time is: " + getCreationTime());
     }
 
+    // sharing the ticket methods
     public void sharedTicket(String phone) {
         System.out.println("This ticket is shared by phone: " + phone);
     }
@@ -86,6 +132,7 @@ public abstract class Ticket {
         System.out.println("This ticket is shared by phone: " + phone + " and email: " + email);
     }
 
+    // overriding object methods
     @Override
     public String toString() {
         return "Ticket ID is:'" + id +
@@ -97,8 +144,8 @@ public abstract class Ticket {
     public boolean equals(Object anyObject) {
         if (this == anyObject) return true; // This ensures that the objects is equal to itself
         if (anyObject == null || getClass() != anyObject.getClass()) return false; //This ensures that the objects being compared are of the same type
-
         // compare 2 Ticket objects by fields id, eventCode, eventTime
+
         Ticket ticket = (Ticket) anyObject;
         return id == ticket.id &&
                 Objects.equals(eventCode, ticket.eventCode) &&

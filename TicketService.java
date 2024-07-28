@@ -80,8 +80,8 @@ class TicketService {
         concertTicket concertTicket1 = new concertTicket("Alexandria", "012", Timestamp.valueOf("2024-07-28 13:18:06.5338071"));
         concertTicket concertTicket2 = new concertTicket("Alexandria", "012", Timestamp.valueOf("2024-07-28 13:18:06.5338071"));
 
-        System.out.println(concertTicket1);
-        System.out.println(concertTicket2);
+        concertTicket1.printTicket();
+        concertTicket2.printTicket();
 
         System.out.println("concertTicket1 equals concertTicket2: " + concertTicket1.equals(concertTicket2)); // false
         System.out.println("concertTicket1 hashCode: " + concertTicket1.hashCode());
@@ -89,13 +89,15 @@ class TicketService {
 
         concertTicket1.setID(1111);
         concertTicket2.setID(1111);
+        concertTicket1.setStadiumSector('B');
 
-        System.out.println(concertTicket1);
-        System.out.println(concertTicket2);
+        concertTicket1.printTicket();
+        concertTicket2.printTicket();
 
         System.out.println("concertTicket1 equals concertTicket2: " + concertTicket1.equals(concertTicket2)); // true
-        System.out.println("concertTicket1 hashCode: " + concertTicket1.hashCode());
-        System.out.println("concertTicket2 hashCode: " + concertTicket2.hashCode());
+
+        concertTicket2.setEventTime(Timestamp.valueOf("2025-07-28 13:18:06.5338071"));
+        concertTicket2.printTicket();
+        System.out.println("concertTicket1 equals concertTicket2: " + concertTicket1.equals(concertTicket2)); // false
     }
 }
-
