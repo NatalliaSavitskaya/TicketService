@@ -68,6 +68,15 @@ class TicketService {
         System.out.println(fullTicket3.getID()); // checking for get method of id
         fullTicket3.setID(2356);
         fullTicket3.printTicket(); // checking for set method of id
+
+        // working with users
+        Admin newAdmin = new Admin();
+        newAdmin.printRole();
+        newAdmin.checkTicket();
+
+        Client newClient = new Client();
+        newClient.printRole();
+        newClient.getTicket();
     }
 }
 
