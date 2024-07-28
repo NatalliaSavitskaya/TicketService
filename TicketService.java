@@ -3,19 +3,17 @@ import java.math.BigDecimal;
 
 class TicketService {
     public static void main(String []args) {
-        Timestamp eventTime = new Timestamp(System.currentTimeMillis());
-        BigDecimal price = BigDecimal.valueOf(19.99);
 
         // working with concert tickets
         concertTicket emptyTicket = new concertTicket();
         System.out.println("The info about the empty concert ticket is:");
         emptyTicket.printTicket();
 
-        concertTicket limitedTicket = new concertTicket("Alexandria", "012", eventTime);
+        concertTicket limitedTicket = new concertTicket("Alexandria", "012", Timestamp.valueOf("2024-07-28 13:18:06.5338071"));
         System.out.println("The info about the limited concert ticket is:");
         limitedTicket.printTicket();
 
-        concertTicket fullTicket = new concertTicket("Alexandria", "012", eventTime, true, 'A', 10.15F, price);
+        concertTicket fullTicket = new concertTicket("Alexandria", "012", Timestamp.valueOf("2024-07-28 13:18:06.5338071"), true, 'A', 10.15F, BigDecimal.valueOf(19.99));
         fullTicket.ticketValidation(); // checking for parameters validation
         System.out.println("The info about the full concert ticket is:");
         fullTicket.printTicket();
@@ -32,11 +30,11 @@ class TicketService {
         System.out.println("The info about the empty movie ticket is:");
         emptyTicket2.printTicket();
 
-        movieTicket limitedTicket2 = new movieTicket("Kinocinema", "354", eventTime);
+        movieTicket limitedTicket2 = new movieTicket("Kinocinema", "354", Timestamp.valueOf("2024-07-28 13:18:06.5338071"));
         System.out.println("The info about the limited movie ticket is:");
         limitedTicket2.printTicket();
 
-        movieTicket fullTicket2 = new movieTicket("Kinocinema", "354", eventTime, true, 'B', 1.5F, price);
+        movieTicket fullTicket2 = new movieTicket("Kinocinema", "354", Timestamp.valueOf("2024-07-28 13:18:06.5338071"), true, 'B', 1.5F, BigDecimal.valueOf(19.99));
         fullTicket.ticketValidation();
         System.out.println("The info about the full movie ticket is:");
         fullTicket2.printTicket();
@@ -53,11 +51,11 @@ class TicketService {
         System.out.println("The info about the empty circus ticket is:");
         emptyTicket3.printTicket();
 
-        circusTicket limitedTicket3 = new circusTicket("Circus", "857", eventTime);
+        circusTicket limitedTicket3 = new circusTicket("Circus", "857", Timestamp.valueOf("2024-07-28 13:18:06.5338071"));
         System.out.println("The info about the limited circus ticket is:");
         limitedTicket3.printTicket();
 
-        circusTicket fullTicket3 = new circusTicket("Circus", "857", eventTime, true, 'C', 2.00F, price);
+        circusTicket fullTicket3 = new circusTicket("Circus", "857", Timestamp.valueOf("2024-07-28 13:18:06.5338071"), true, 'C', 2.00F, BigDecimal.valueOf(19.99));
         fullTicket3.ticketValidation();
         System.out.println("The info about the full circus ticket is:");
         fullTicket3.printTicket();
@@ -68,6 +66,36 @@ class TicketService {
         System.out.println(fullTicket3.getID()); // checking for get method of id
         fullTicket3.setID(2356);
         fullTicket3.printTicket(); // checking for set method of id
+
+        // working with users
+        Admin newAdmin = new Admin();
+        newAdmin.printRole();
+        newAdmin.checkTicket();
+
+        Client newClient = new Client();
+        newClient.printRole();
+        newClient.getTicket();
+
+        // working with toString(), hashCode(), equals()
+        concertTicket concertTicket1 = new concertTicket("Alexandria", "012", Timestamp.valueOf("2024-07-28 13:18:06.5338071"));
+        concertTicket concertTicket2 = new concertTicket("Alexandria", "012", Timestamp.valueOf("2024-07-28 13:18:06.5338071"));
+
+        System.out.println(concertTicket1);
+        System.out.println(concertTicket2);
+
+        System.out.println("concertTicket1 equals concertTicket2: " + concertTicket1.equals(concertTicket2)); // false
+        System.out.println("concertTicket1 hashCode: " + concertTicket1.hashCode());
+        System.out.println("concertTicket2 hashCode: " + concertTicket2.hashCode());
+
+        concertTicket1.setID(1111);
+        concertTicket2.setID(1111);
+
+        System.out.println(concertTicket1);
+        System.out.println(concertTicket2);
+
+        System.out.println("concertTicket1 equals concertTicket2: " + concertTicket1.equals(concertTicket2)); // true
+        System.out.println("concertTicket1 hashCode: " + concertTicket1.hashCode());
+        System.out.println("concertTicket2 hashCode: " + concertTicket2.hashCode());
     }
 }
 

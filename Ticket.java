@@ -1,7 +1,7 @@
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public abstract class Ticket {
     public int id;
@@ -12,7 +12,7 @@ public abstract class Ticket {
     public char stadiumSector;
     public float maxWeight;
     public BigDecimal price;
-    public final LocalDateTime creationTime = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+    public final LocalDateTime creationTime = LocalDateTime.now();
 
     private static int currentID = 1000;
 
@@ -84,5 +84,28 @@ public abstract class Ticket {
 
     public void sharedTicket(String phone, String email) {
         System.out.println("This ticket is shared by phone: " + phone + " and email: " + email);
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket ID is:'" + id +
+                ", event code is: " + eventCode +
+                ", event time is: " + eventTime;
+    }
+
+    @Override
+    public boolean equals(Object anyObject) {
+        if (this == anyObject) return true; // This ensures that the objects is equal to itself
+        if (anyObject == null || getClass() != anyObject.getClass()) return false; //This ensures that the objects being compared are of the same type
+       // compare 2 Ticket objects by fields id, eventCode, eventTime
+        Ticket ticket = (Ticket) anyObject;
+        return id == ticket.id &&
+                Objects.equals(eventCode, ticket.eventCode) &&
+                Objects.equals(eventTime, ticket.eventTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, eventCode, eventTime);
     }
 }
