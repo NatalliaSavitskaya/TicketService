@@ -73,14 +73,16 @@ public abstract class Ticket {
     }
 
     public void printTicket() {
+        System.out.println("This is general info about the ticket.");
         System.out.println("Ticket ID: " + getID());
         System.out.println("Ticket creation time is: " + creationTime);
-        System.out.println("Concert hall is: " + concertHall);
-        System.out.println("Event code is: " + eventCode);
-        System.out.println("Event time is: " + eventTime);
-        System.out.println("Ticket is promo:" + isPromo);
-        System.out.println("Stadium sector is: " + stadiumSector);
-        System.out.println("Max allowed backpack weight: " + String.format("%.2f", maxWeight) + " kg.g");
-        System.out.println("Price=" + price + " EUR");
+    }
+
+    public void sharedTicket(String phone) {
+        System.out.println("This ticket is shared by phone: " + phone);
+    }
+
+    public void sharedTicket(String phone, String email) {
+        System.out.println("This ticket is shared by phone: " + phone + " and email: " + email);
     }
 }
