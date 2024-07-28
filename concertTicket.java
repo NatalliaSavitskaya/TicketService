@@ -16,6 +16,15 @@ public class concertTicket extends Ticket {
 
     @Override
     public void printTicket() {
-        System.out.println("This is an additional message about concert ticket type.");
+        System.out.println("This is a ticket to the concert.");
+        System.out.println("Ticket ID: " + getID());
+        System.out.println("Ticket creation time is: " + creationTime);
+        System.out.println("Concert hall is: " + concertHall);
+        System.out.println("Event code is: " + eventCode);
+        System.out.println("Event time is: " + eventTime);
+        System.out.println("Ticket is promo:" + isPromo);
+        System.out.println("Stadium sector is: " + stadiumSector);
+        System.out.println("Max allowed backpack weight: " + String.format("%.2f", maxWeight) + " kg.g");
+        System.out.println("Price=" + price + " EUR");
     }
 }
